@@ -6,6 +6,7 @@ declare module '@emotion/react' {
     secondary: string;
     accent: string;
     colText: string;
+    bgcHoverFocusLinks: string;
     bgTweetCard: string;
   }
 }

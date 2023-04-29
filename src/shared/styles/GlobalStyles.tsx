@@ -1,7 +1,4 @@
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+import '@fontsource/montserrat';
 import { css } from '@emotion/react';
 import { modernNormalizeCss } from 'emotion-modern-normalize';
 
@@ -19,7 +16,7 @@ export const GlobalStyles = css`
   }
 
   body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     padding: 0;
     margin: 0;
   }

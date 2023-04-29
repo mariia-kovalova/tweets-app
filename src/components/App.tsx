@@ -4,8 +4,8 @@ import { SharedLayout } from './SharedLayout';
 import { any, home } from '../shared/constants/routes';
 import { tweets } from '../shared/constants/routes';
 
-const HomePage = lazy(() => import('../pages/HomePage'));
-const TweetsPage = lazy(() => import('../pages/TweetsPage'));
+const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
+const TweetsPage = lazy(() => import('../pages/TweetsPage/TweetsPage'));
 
 export const App: FC = () => {
   return (
