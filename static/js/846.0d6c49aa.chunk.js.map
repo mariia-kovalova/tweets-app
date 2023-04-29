@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/846.0d6c49aa.chunk.js","mappings":"gIAMA,UAJqB,WACnB,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,aACd,C","sources":["pages/HomePage.tsx"],"sourcesContent":["import { FC } from 'react';\n\nconst HomePage: FC = () => {\n  return <div>Home Page</div>;\n};\n\nexport default HomePage;\n"],"names":["_jsx","children"],"sourceRoot":""}
