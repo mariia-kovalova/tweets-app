@@ -12,7 +12,7 @@ export const TweetList: FC = () => {
     dispatch(getTweets());
   }, [dispatch]);
 
-  const { items, isLoading, error } = useTweets();
+  const { items } = useTweets();
   return (
     <List>
       {items.map(item => (

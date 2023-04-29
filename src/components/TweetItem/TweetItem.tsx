@@ -18,7 +18,7 @@ interface IProps {
 }
 
 export const TweetItem: FC<IProps> = ({ tweet }) => {
-  const { id, avatar, followers, tweets, user } = tweet;
+  const { avatar, followers, tweets } = tweet;
 
   const isActive = false;
 

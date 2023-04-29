@@ -4,5 +4,5 @@ const ROUTES = {
   any: '*',
 };
 
-export const BASE_NAME = '/tweets';
+export const BASE_NAME = '/tweets-app';
 export const { home, tweets, any } = ROUTES;
