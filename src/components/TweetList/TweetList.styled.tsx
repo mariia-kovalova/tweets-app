@@ -6,10 +6,6 @@ export const List = styled.ul`
   flex-wrap: wrap;
   gap: 20px;
 
-  @media screen and (min-width: ${tablet}) {
-    flex-wrap: nowrap;
-  }
-
   @media screen and (min-width: ${desktop}) {
     gap: 38px;
   }
