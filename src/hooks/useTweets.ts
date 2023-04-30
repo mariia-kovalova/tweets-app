@@ -29,6 +29,8 @@ const selectFilteredTweets = createSelector(
         return tweets.filter(tweet => !tweet.isFollowing);
       case followings:
         return tweets.filter(tweet => tweet.isFollowing);
+      default:
+        return tweets;
     }
   }
 );
