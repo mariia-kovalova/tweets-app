@@ -17,6 +17,11 @@ import {
   TweetsImg,
   Wrap,
 } from './TweetItem.styled';
+import {
+  numberWithComas,
+  numberWithSpaces,
+} from '../../shared/utils/formatNumber';
+import { Tooltip } from '../ToolTip';
 
 interface IProps {
   tweet: TweetsWithIsFollowing;
@@ -65,11 +70,13 @@ const TweetItem: FC<IProps> = ({ tweet }) => {
       <LogoImg src={logoSvg} alt="logo" />
       <TweetsImg src={tweetsSvg} alt="tweets" />
       <Avatar>
-        <AvatarImg src={avatar || avatarSvg} alt="avatar" />
+        <Tooltip text={user}>
+          <AvatarImg src={avatar || avatarSvg} alt="avatar" />
+        </Tooltip>
       </Avatar>
       <Info>
-        <p>{tweets} tweets</p>
-        <p>{followers} followers</p>
+        <p>{numberWithSpaces(tweets)} tweets</p>
+        <p>{numberWithComas(followers)} followers</p>
       </Info>
       <TweetButton
         type="button"

@@ -1,21 +1,37 @@
-import { FC, ChangeEvent } from 'react';
-import { TweetList } from '../../components/TweetList';
+import { FC, useEffect } from 'react';
+import { TweetsWithIsFollowing } from '../../shared/types/TweetItem.interface';
+import { Helmet } from 'react-helmet-async';
+import { useTweets } from '../../hooks/useTweets';
+import { useAppDispatch } from '../../hooks/useRedux';
+import { getTweets } from '../../redux/tweets/operations';
+import { usePagination } from '../../hooks/usePagination';
+import { useLocation } from 'react-router';
+import { home } from '../../shared/constants/routes';
+
 import { Section } from '../../shared/styles/components/Section.styled';
 import { Container } from '../../shared/styles/components/Container.styled';
-import { Helmet } from 'react-helmet-async';
-import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
-import { selectStatusFilter } from '../../redux/filter/selectors';
-import { follow, followings, showAll } from '../../shared/constants/filter';
-import { setStatusFilter } from '../../redux/filter/slice';
-// import { GoBackLink } from '../../shared/styles/components/GoBackLink.styled';
+import { Loader } from '../../components/Loader';
+import { TweetList } from '../../components/TweetList';
+import { Info, StyledBackIcon, StyledButton, Wrap } from './TweetsPage.styled';
+import { Filter } from '../../components/Filter';
+import { GoBackLink } from '../../shared/styles/components/GoBackLink.styled';
 
 const TweetsPage: FC = () => {
-  const filter = useAppSelector(selectStatusFilter);
+  const location = useLocation();
+  const path = location.state?.from ?? home;
+  const { items = [], isLoading, error } = useTweets();
   const dispatch = useAppDispatch();
 
-  const handleFilterChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    dispatch(setStatusFilter(e.currentTarget.value));
-  };
+  const { shownData, hasMore, loadMore } =
+    usePagination<TweetsWithIsFollowing>(items);
+
+  useEffect(() => {
+    dispatch(getTweets());
+  }, [dispatch]);
+
+  const showLoader = isLoading && shownData.length === 0;
+  const showList = !error && shownData.length !== 0;
+  const showLoadMore = !error && shownData.length !== 0 && hasMore;
 
   return (
     <>
@@ -24,22 +40,27 @@ const TweetsPage: FC = () => {
       </Helmet>
       <Section>
         <Container>
-          {/* <GoBackLink to={} /> */}
-          <div>
-            <label>
-              Filter:
-              <select
-                id="filter-select"
-                value={filter}
-                onChange={handleFilterChange}
-              >
-                <option value={showAll}>Show all</option>
-                <option value={follow}>Follow</option>
-                <option value={followings}>Followings</option>
-              </select>
-            </label>
-          </div>
-          <TweetList />
+          <Wrap>
+            <GoBackLink to={path}>
+              <StyledBackIcon />
+              <span>Go back</span>
+            </GoBackLink>
+            {!error && <Filter />}
+          </Wrap>
+
+          {showList && <TweetList items={shownData} />}
+          {showLoadMore && (
+            <StyledButton type="button" onClick={loadMore}>
+              Load more
+            </StyledButton>
+          )}
+          {showLoader && <Loader />}
+          {error && (
+            <Info>
+              <p>Oops, something went wrong</p>
+              <p>(๑•́ ﹏•̀๑✿)</p>
+            </Info>
+          )}
         </Container>
       </Section>
     </>

@@ -1,34 +1,26 @@
 import { useState, useEffect } from 'react';
 
-interface PaginationProps<T> {
-  initialPage: number;
-  perPage: number;
-  data: T[];
-}
-
 interface PaginationResult<T> {
   shownData: T[];
   loadMore: () => void;
   hasMore: boolean;
 }
 
-export function usePagination<T>({
-  initialPage,
-  perPage,
-  data,
-}: PaginationProps<T>): PaginationResult<T> {
-  const [currentPage, setCurrentPage] = useState(initialPage);
+const PER_PAGE = 3;
+
+export function usePagination<T>(items: T[]): PaginationResult<T> {
+  const [currentPage, setCurrentPage] = useState(1);
   const [shownData, setShownData] = useState<T[]>([]);
 
   useEffect(() => {
-    setShownData(data.slice(0, currentPage * perPage));
-  }, [data, currentPage, perPage]);
+    setShownData(items.slice(0, currentPage * PER_PAGE));
+  }, [items, currentPage]);
 
   const loadMore = () => {
     setCurrentPage(currentPage + 1);
   };
 
-  const hasMore = currentPage * perPage < data.length;
+  const hasMore = currentPage * PER_PAGE < items.length;
 
   return { shownData, loadMore, hasMore };
 }

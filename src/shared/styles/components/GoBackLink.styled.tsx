@@ -6,9 +6,9 @@ export const GoBackLink = styled(Link)`
   gap: 5px;
   align-items: center;
   text-decoration: none;
-  color: black;
+  color: ${({ theme }) => theme.colText};
   :hover,
   :focus {
-    color: blue;
+    color: ${({ theme }) => theme.accent};
   }
 `;
