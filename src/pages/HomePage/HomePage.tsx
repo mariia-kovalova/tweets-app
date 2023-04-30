@@ -18,7 +18,7 @@ const HomePage: FC = () => {
       <Section>
         <Container>
           <Tittle>Welcome to Tweets App</Tittle>
-          <TweetsImg src={tweetsSvg} alt="tweets" />
+          <TweetsImg width="280" height="153" src={tweetsSvg} alt="tweets" />
           <StyledLink to={tweets} state={{ from: location }}>
             see tweets
           </StyledLink>
