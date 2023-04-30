@@ -1,5 +1,5 @@
 import { FC, lazy } from 'react';
-import { Route, Routes } from 'react-router';
+import { Navigate, Route, Routes } from 'react-router';
 import { SharedLayout } from './SharedLayout';
 import { any, home } from '../shared/constants/routes';
 import { tweets } from '../shared/constants/routes';
@@ -13,7 +13,7 @@ export const App: FC = () => {
       <Route path={home} element={<SharedLayout />}>
         <Route index element={<HomePage />} />
         <Route path={tweets} element={<TweetsPage />} />
-        <Route path={any} element={<HomePage />} />
+        <Route path={any} element={<Navigate to={home} />} />
       </Route>
     </Routes>
   );
