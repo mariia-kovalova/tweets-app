@@ -8,7 +8,6 @@ import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import { persistor, store } from './redux/store';
-import { BASE_NAME } from './shared/constants/routes';
 import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(
@@ -20,7 +19,7 @@ root.render(
       <ThemeProvider theme={theme}>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-            <BrowserRouter basename={BASE_NAME}>
+            <BrowserRouter basename="/tweets-app">
               <Global styles={GlobalStyles} />
               <App />
             </BrowserRouter>
