@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/tweets-app/static/css/main.bb15b361.css",
-    "main.js": "/tweets-app/static/js/main.84548411.js",
-    "static/js/278.1c452138.chunk.js": "/tweets-app/static/js/278.1c452138.chunk.js",
-    "static/js/623.e03c5e17.chunk.js": "/tweets-app/static/js/623.e03c5e17.chunk.js",
+    "main.js": "/tweets-app/static/js/main.39c5a45f.js",
+    "static/js/278.b8306e8b.chunk.js": "/tweets-app/static/js/278.b8306e8b.chunk.js",
+    "static/js/428.272be7e5.chunk.js": "/tweets-app/static/js/428.272be7e5.chunk.js",
     "static/js/597.ed49fe64.chunk.js": "/tweets-app/static/js/597.ed49fe64.chunk.js",
     "static/media/avatar.svg": "/tweets-app/static/media/avatar.ac85bc0b7eed23122fbe99f9bbfb2c62.svg",
     "static/media/tweets.svg": "/tweets-app/static/media/tweets.23dcbc3cc8ccc9682f24b4acffb5efb2.svg",
@@ -16,13 +16,13 @@
     "static/media/montserrat-vietnamese-400-normal.woff2": "/tweets-app/static/media/montserrat-vietnamese-400-normal.8f3f4c99eb0eeb5990f1.woff2",
     "index.html": "/tweets-app/index.html",
     "main.bb15b361.css.map": "/tweets-app/static/css/main.bb15b361.css.map",
-    "main.84548411.js.map": "/tweets-app/static/js/main.84548411.js.map",
-    "278.1c452138.chunk.js.map": "/tweets-app/static/js/278.1c452138.chunk.js.map",
-    "623.e03c5e17.chunk.js.map": "/tweets-app/static/js/623.e03c5e17.chunk.js.map",
+    "main.39c5a45f.js.map": "/tweets-app/static/js/main.39c5a45f.js.map",
+    "278.b8306e8b.chunk.js.map": "/tweets-app/static/js/278.b8306e8b.chunk.js.map",
+    "428.272be7e5.chunk.js.map": "/tweets-app/static/js/428.272be7e5.chunk.js.map",
     "597.ed49fe64.chunk.js.map": "/tweets-app/static/js/597.ed49fe64.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.bb15b361.css",
-    "static/js/main.84548411.js"
+    "static/js/main.39c5a45f.js"
   ]
 }
