@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
+import { tablet } from '../../shared/constants/devicesSizes';
 
 export const List = styled.ul`
   display: flex;
@@ -11,7 +12,7 @@ export const StyledNavLink = styled(NavLink)`
 
   font-style: normal;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 24px;
   text-transform: uppercase;
   color: ${({ theme }) => theme.secondary};
@@ -24,5 +25,9 @@ export const StyledNavLink = styled(NavLink)`
   &:hover,
   &:focus {
     background-color: ${({ theme }) => theme.bgcHoverFocusLinks};
+  }
+
+  @media screen and (min-width: ${tablet}) {
+    font-size: 20px;
   }
 `;

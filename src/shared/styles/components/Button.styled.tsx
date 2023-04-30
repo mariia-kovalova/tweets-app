@@ -1,9 +1,6 @@
 import styled from '@emotion/styled';
 
 export const Button = styled.button`
-  min-width: 196px;
-  height: 50px;
-
   text-align: center;
   color: ${({ theme }) => theme.colText};
 

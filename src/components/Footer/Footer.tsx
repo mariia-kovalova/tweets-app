@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { FooterStyled, Heart, Link, Wrap } from './Footer.styled';
+import { FooterStyled, Heart, Link, TextWrap, Wrap } from './Footer.styled';
 import { Container } from '../../shared/styles/components/Container.styled';
 
 export const Footer: FC = () => {
@@ -8,16 +8,17 @@ export const Footer: FC = () => {
       <Container>
         <Wrap>
           <span>&copy; 2023 | All Rights Reserved |</span>
-          <span>Developed with</span>
-          <Heart />
-          <span>by</span>
+          <TextWrap>
+            <span>Developed with</span>
+            <Heart />
+          </TextWrap>
           <Link
             href="https://github.com/mariia-kovalova"
             target="_blank"
             rel="noreferrer noopener nofollow"
             color="inherit"
           >
-            Mariia Kovalova
+            by Mariia Kovalova
           </Link>
         </Wrap>
       </Container>

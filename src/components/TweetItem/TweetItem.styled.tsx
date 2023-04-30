@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Button } from '../../shared/styles/components/Button.styled';
+import { desktop } from '../../shared/constants/devicesSizes';
 
 type StyedButtonProps = {
   isFollowing: boolean;
@@ -11,11 +12,15 @@ export const Wrap = styled.div`
   width: 100%;
   height: 100%;
 
-  padding: 284px 20px 36px;
+  padding: 240px 20px 36px;
 
-  background: ${props => props.theme.bgTweetCard};
+  background: ${({ theme }) => theme.bgTweetCard};
   box-shadow: -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23);
   border-radius: 20px;
+
+  @media screen and (min-width: ${desktop}) {
+    padding: 284px 20px 36px;
+  }
 
   &::before {
     content: '';
@@ -23,12 +28,16 @@ export const Wrap = styled.div`
     width: 100%;
     height: 8px;
     left: 0px;
-    top: 214px;
+    top: 184px;
 
     background-color: ${({ theme }) => theme.secondary};
     box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.06),
       inset 0px -1.71846px 3.43693px #ae7be3,
       inset 0px 3.43693px 2.5777px #fbf8ff;
+
+    @media screen and (min-width: ${desktop}) {
+      top: 214px;
+    }
   }
 `;
 
@@ -47,7 +56,7 @@ export const TweetsImg = styled.img`
 
 export const Avatar = styled.div`
   position: absolute;
-  top: 178px;
+  top: 148px;
   left: 50%;
   transform: translate(-50%, 0);
 
@@ -63,6 +72,10 @@ export const Avatar = styled.div`
   box-shadow: 0px 4.39163px 4.39163px rgba(0, 0, 0, 0.06),
     inset 0px -2.19582px 4.39163px #ae7be3,
     inset 0px 4.39163px 3.29372px #fbf8ff;
+
+  @media screen and (min-width: ${desktop}) {
+    top: 178px;
+  }
 `;
 
 export const AvatarImg = styled.img`
@@ -76,25 +89,43 @@ export const AvatarImg = styled.img`
 export const Info = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
 
   text-align: center;
   font-style: normal;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 24px;
   text-transform: uppercase;
 
   color: ${({ theme }) => theme.secondary};
+
+  @media screen and (min-width: ${desktop}) {
+    gap: 16px;
+    font-size: 20px;
+  }
 `;
 
 export const TweetButton = styled(Button)<StyedButtonProps>`
-  margin: 26px auto 0;
+  width: 180px;
+  height: 50px;
+  margin: 16px auto 0;
+
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
   text-transform: uppercase;
   background-color: ${({ theme, isFollowing }) =>
     isFollowing ? theme.accent : theme.secondary};
 
   &:disabled {
     background-color: rgba(128, 128, 128, 0.641);
+  }
+
+  @media screen and (min-width: ${desktop}) {
+    margin: 26px auto 0;
+    width: 196px;
+    font-size: 18px;
   }
 `;

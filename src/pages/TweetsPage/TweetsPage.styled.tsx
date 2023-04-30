@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { BsArrowLeftCircle } from 'react-icons/bs';
 import { Button } from '../../shared/styles/components/Button.styled';
+import { tablet } from '../../shared/constants/devicesSizes';
 
 export const Wrap = styled.div`
   display: flex;
@@ -14,11 +15,21 @@ export const StyledBackIcon = styled(BsArrowLeftCircle)`
 `;
 
 export const StyledButton = styled(Button)`
+  width: 196px;
+  height: 40px;
   margin: 26px auto 0;
 
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
   text-transform: uppercase;
   color: ${({ theme }) => theme.secondary};
   background-color: ${({ theme }) => theme.primary};
+
+  @media screen and (min-width: ${tablet}) {
+    height: 50px;
+  }
 `;
 
 export const Info = styled.p`

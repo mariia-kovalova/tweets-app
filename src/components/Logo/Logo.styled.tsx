@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { BiMessageCheck } from 'react-icons/bi';
 import { NavLink } from 'react-router-dom';
+import { tablet } from '../../shared/constants/devicesSizes';
 
 export const StyledNavLink = styled(NavLink)`
   display: flex;
@@ -16,12 +17,17 @@ export const StyledNavLink = styled(NavLink)`
 `;
 
 export const Text = styled.p`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 24px;
-  text-transform: uppercase;
-  color: ${({ theme }) => theme.secondary};
+  display: none;
+
+  @media screen and (min-width: ${tablet}) {
+    display: block;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    text-transform: uppercase;
+    color: ${({ theme }) => theme.secondary};
+  }
 `;
 
 export const StyledLogoIcon = styled(BiMessageCheck)`
