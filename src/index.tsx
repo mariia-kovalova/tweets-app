@@ -6,8 +6,8 @@ import { theme } from './shared/styles/theme';
 import { App } from './components/App';
 import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
-// import { PersistGate } from 'redux-persist/es/integration/react';
-import { store } from './redux/store';
+import { PersistGate } from 'redux-persist/es/integration/react';
+import { persistor, store } from './redux/store';
 import { BASE_NAME } from './shared/constants/routes';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -19,12 +19,12 @@ root.render(
     <HelmetProvider>
       <ThemeProvider theme={theme}>
         <Provider store={store}>
-          {/* <PersistGate loading={null} persistor={persistor}> */}
-          <BrowserRouter basename={BASE_NAME}>
-            <Global styles={GlobalStyles} />
-            <App />
-          </BrowserRouter>
-          {/* </PersistGate> */}
+          <PersistGate loading={null} persistor={persistor}>
+            <BrowserRouter basename={BASE_NAME}>
+              <Global styles={GlobalStyles} />
+              <App />
+            </BrowserRouter>
+          </PersistGate>
         </Provider>
       </ThemeProvider>
     </HelmetProvider>

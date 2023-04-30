@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Button } from '../../shared/styles/components/Button.styled';
 
 type StyedButtonProps = {
-  isActive: boolean;
+  isFollowing: boolean;
 };
 
 export const Wrap = styled.div`
@@ -92,6 +92,10 @@ export const Info = styled.div`
 export const TweetButton = styled(Button)<StyedButtonProps>`
   margin: 26px auto 0;
   text-transform: uppercase;
-  background-color: ${({ theme, isActive }) =>
-    isActive ? theme.accent : theme.secondary};
+  background-color: ${({ theme, isFollowing }) =>
+    isFollowing ? theme.accent : theme.secondary};
+
+  &:disabled {
+    background-color: rgba(128, 128, 128, 0.641);
+  }
 `;

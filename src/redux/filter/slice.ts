@@ -13,8 +13,8 @@ const slice = createSlice({
   name: 'filters',
   initialState,
   reducers: {
-    setStatusFilter(state, action) {
-      state.status = action.payload;
+    setStatusFilter(state, { payload }) {
+      state.status = payload;
     },
   },
 });

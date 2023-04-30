@@ -1,4 +1,13 @@
-import { FC } from 'react';
+import { FC, memo, useState } from 'react';
+import { TweetsWithIsFollowing } from '../../shared/types/TweetItem.interface';
+import { useAppDispatch } from '../../hooks/useRedux';
+import { addFollowing, removeFollowing } from '../../redux/followings/slice';
+import { updateTweet } from '../../redux/tweets/operations';
+
+import logoSvg from '../../shared/images/logo.svg';
+import tweetsSvg from '../../shared/images/tweets.svg';
+import avatarSvg from '../../shared/images/avatar.svg';
+import { BtnLoader } from '../BtnLoader';
 import {
   Avatar,
   AvatarImg,
@@ -8,19 +17,48 @@ import {
   TweetsImg,
   Wrap,
 } from './TweetItem.styled';
-import logoSvg from '../../shared/images/logo.svg';
-import tweetsSvg from '../../shared/images/tweets.svg';
-import avatarSvg from '../../shared/images/avatar.svg';
-import { ITweetItem } from '../../shared/types/TweetItem.interface';
 
 interface IProps {
-  tweet: ITweetItem;
+  tweet: TweetsWithIsFollowing;
 }
 
-export const TweetItem: FC<IProps> = ({ tweet }) => {
-  const { avatar, followers, tweets } = tweet;
+const TweetItem: FC<IProps> = ({ tweet }) => {
+  const [isUpdating, setIsUpdating] = useState(false);
+  const { id, user, avatar, followers, tweets, isFollowing } = tweet;
+  const dispatch = useAppDispatch();
 
-  const isActive = false;
+  const follow = async () => {
+    await dispatch(
+      updateTweet({
+        id,
+        user,
+        avatar,
+        tweets,
+        followers: followers - 1,
+      })
+    ).unwrap();
+    dispatch(removeFollowing(id));
+  };
+
+  const unfollow = async () => {
+    await dispatch(
+      updateTweet({
+        id,
+        user,
+        avatar,
+        tweets,
+        followers: followers + 1,
+      })
+    ).unwrap();
+    dispatch(addFollowing(id));
+  };
+
+  const handleToggleFollow = async () => {
+    setIsUpdating(true);
+    if (isFollowing) await follow();
+    if (!isFollowing) await unfollow();
+    setIsUpdating(false);
+  };
 
   return (
     <Wrap>
@@ -33,9 +71,20 @@ export const TweetItem: FC<IProps> = ({ tweet }) => {
         <p>{tweets} tweets</p>
         <p>{followers} followers</p>
       </Info>
-      <TweetButton type="button" isActive={isActive}>
-        {isActive ? 'following' : 'follow'}
+      <TweetButton
+        type="button"
+        isFollowing={isFollowing}
+        onClick={handleToggleFollow}
+        disabled={isUpdating}
+      >
+        {isUpdating ? (
+          <BtnLoader />
+        ) : (
+          <span>{isFollowing ? 'following' : 'follow'}</span>
+        )}
       </TweetButton>
     </Wrap>
   );
 };
+
+export default memo(TweetItem);

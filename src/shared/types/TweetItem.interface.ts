@@ -5,3 +5,6 @@ export interface ITweetItem {
   avatar: string;
   id: string;
 }
+export interface TweetsWithIsFollowing extends ITweetItem {
+  isFollowing: boolean;
+}

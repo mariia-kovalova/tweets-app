@@ -1,41 +1,40 @@
 import { FC, useEffect } from 'react';
-import { useAppDispatch } from '../../hooks/useRedux';
-import { getTweets } from '../../redux/tweets/operations';
+import { TweetsWithIsFollowing } from '../../shared/types/TweetItem.interface';
 import { useTweets } from '../../hooks/useTweets';
-import { TweetItem } from '../TweetItem';
-import { End, Item, List, StyledButton } from './TweetList.styled';
+import { useAppDispatch } from '../../hooks/useRedux';
 import { usePagination } from '../../hooks/usePagination';
-import { ITweetItem } from '../../shared/types/TweetItem.interface';
-import { scrollToBottom } from '../../shared/utils/scrollToBottom';
+import { getTweets } from '../../redux/tweets/operations';
+
+import TweetItem from '../TweetItem/TweetItem';
+import { Loader } from '../Loader';
+import { End, Item, List, StyledButton } from './TweetList.styled';
 
 const ITEMS_PER_PAGE = 3;
 
 export const TweetList: FC = () => {
-  const { items, isLoading, error } = useTweets();
+  const { items = [], isLoading, error } = useTweets();
   const dispatch = useAppDispatch();
-  const { shownData, hasMore, loadMore } = usePagination<ITweetItem>({
-    initialPage: 1,
-    perPage: ITEMS_PER_PAGE,
-    data: items,
-  });
+
+  const { shownData, hasMore, loadMore } = usePagination<TweetsWithIsFollowing>(
+    {
+      initialPage: 1,
+      perPage: ITEMS_PER_PAGE,
+      data: items,
+    }
+  );
 
   useEffect(() => {
     dispatch(getTweets());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (shownData.length > ITEMS_PER_PAGE) scrollToBottom();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loadMore]);
-
-  const showList = !error && !isLoading && shownData.length !== 0;
-  const showLoadMore =
-    !error && !isLoading && shownData.length !== 0 && hasMore;
-  const showEnd = !error && !isLoading && shownData.length !== 0 && !hasMore;
+  const showLoader = isLoading && shownData.length === 0;
+  const showList = !error && shownData.length !== 0;
+  const showLoadMore = !error && shownData.length !== 0 && hasMore;
+  const showEnd = !error && shownData.length !== 0 && !hasMore;
 
   return (
     <>
-      {isLoading && <div>Skeleton</div>}
+      {showLoader && <Loader />}
       {error && <div>Error</div>}
       {showList && (
         <List>
