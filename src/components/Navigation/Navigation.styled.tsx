@@ -16,7 +16,7 @@ export const StyledNavLink = styled(NavLink)`
   line-height: 24px;
   text-transform: uppercase;
   color: ${({ theme }) => theme.secondary};
-  transition: all 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
 
   &.active {
     border-bottom: 2px solid ${({ theme }) => theme.secondary};

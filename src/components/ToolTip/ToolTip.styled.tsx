@@ -1,12 +1,12 @@
 import styled from '@emotion/styled/macro';
 
-export const Wrap = styled.div`
-  position: relative;
-`;
-
 export const Text = styled.div`
   position: absolute;
+  top: -55%;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1;
+
   background-color: #333;
   color: #fff;
   padding: 8px;
@@ -14,9 +14,6 @@ export const Text = styled.div`
   font-size: 14px;
   line-height: 1.4;
   white-space: nowrap;
-  top: -75%;
-  left: 50%;
-  transform: translateX(-50%);
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
 

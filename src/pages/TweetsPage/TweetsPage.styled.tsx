@@ -26,6 +26,12 @@ export const StyledButton = styled(Button)`
   text-transform: uppercase;
   color: ${({ theme }) => theme.secondary};
   background-color: ${({ theme }) => theme.primary};
+  transition: transform 250ms ${({ theme }) => theme.cubic};
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+  }
 
   @media screen and (min-width: ${tablet}) {
     height: 50px;

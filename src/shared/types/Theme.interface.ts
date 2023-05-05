@@ -8,5 +8,6 @@ declare module '@emotion/react' {
     colText: string;
     bgcHoverFocusLinks: string;
     bgTweetCard: string;
+    cubic: string;
   }
 }

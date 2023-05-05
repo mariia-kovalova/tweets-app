@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import tweetsSvg from '../../shared/images/tweets.svg';
 import { tablet } from '../../shared/constants/devicesSizes';
 import { Link } from 'react-router-dom';
 
@@ -17,8 +18,14 @@ export const Tittle = styled.h1`
   }
 `;
 
-export const TweetsImg = styled.img`
-  margin: 20px auto;
+export const TweetsImg = styled.div`
+  margin: 40px auto;
+  width: 280px;
+  height: 153px;
+  background-image: url(${tweetsSvg});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 `;
 
 export const StyledLink = styled(Link)`
@@ -37,6 +44,10 @@ export const StyledLink = styled(Link)`
   text-align: center;
   color: ${({ theme }) => theme.colText};
   background-color: ${({ theme }) => theme.accent};
+  &:hover,
+  &:focus {
+    background-color: ${({ theme }) => theme.bgcHoverFocusLinks};
+  }
 
   @media screen and (min-width: ${tablet}) {
     font-size: 18px;

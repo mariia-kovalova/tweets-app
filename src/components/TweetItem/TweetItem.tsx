@@ -5,7 +5,6 @@ import { addFollowing, removeFollowing } from '../../redux/followings/slice';
 import { updateTweet } from '../../redux/tweets/operations';
 
 import logoSvg from '../../shared/images/logo.svg';
-import tweetsSvg from '../../shared/images/tweets.svg';
 import avatarSvg from '../../shared/images/avatar.svg';
 import { BtnLoader } from '../BtnLoader';
 import {
@@ -67,11 +66,16 @@ const TweetItem: FC<IProps> = ({ tweet }) => {
 
   return (
     <Wrap>
-      <LogoImg src={logoSvg} alt="logo" />
-      <TweetsImg src={tweetsSvg} alt="tweets" />
+      <LogoImg src={logoSvg} width="76" height="22" alt="logo" />
+      <TweetsImg />
       <Avatar>
         <Tooltip text={user}>
-          <AvatarImg src={avatar || avatarSvg} alt="avatar" />
+          <AvatarImg
+            src={avatar || avatarSvg}
+            width="64"
+            height="64"
+            alt="avatar"
+          />
         </Tooltip>
       </Avatar>
       <Info>

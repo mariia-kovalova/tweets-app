@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Text, Trigger, Wrap } from './ToolTip.styled';
+import { Text, Trigger } from './ToolTip.styled';
 
 interface Props {
   text: string;
@@ -14,11 +14,11 @@ export const Tooltip: FC<Props> = ({ text, children }) => {
   };
 
   return (
-    <Wrap>
+    <>
       <Trigger onMouseEnter={toggleTooltip} onMouseLeave={toggleTooltip}>
         {children}
       </Trigger>
-      {isVisible && <Text>{text}</Text>}
-    </Wrap>
+      {isVisible && <Text aria-label="User name">{text}</Text>}
+    </>
   );
 };

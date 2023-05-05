@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
+import tweetsSvg from '../../shared/images/tweets.svg';
 import { Button } from '../../shared/styles/components/Button.styled';
-import { desktop } from '../../shared/constants/devicesSizes';
+import { desktop, tablet } from '../../shared/constants/devicesSizes';
 
 type StyedButtonProps = {
   isFollowing: boolean;
@@ -11,7 +12,6 @@ export const Wrap = styled.div`
 
   width: 100%;
   height: 100%;
-
   padding: 240px 20px 36px;
 
   background: ${({ theme }) => theme.bgTweetCard};
@@ -47,11 +47,31 @@ export const LogoImg = styled.img`
   left: 21px;
 `;
 
-export const TweetsImg = styled.img`
+export const TweetsImg = styled.div`
   position: absolute;
-  top: 27px;
+  top: 35px;
   left: 50%;
   transform: translate(-50%, 0);
+
+  width: 221px;
+  height: 121px;
+
+  background-image: url(${tweetsSvg});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  @media screen and (min-width: ${tablet}) {
+    top: 52px;
+    width: 183px;
+    height: 96px;
+  }
+
+  @media screen and (min-width: ${desktop}) {
+    top: 27px;
+    width: 280px;
+    height: 153px;
+  }
 `;
 
 export const Avatar = styled.div`
@@ -118,6 +138,12 @@ export const TweetButton = styled(Button)<StyedButtonProps>`
   text-transform: uppercase;
   background-color: ${({ theme, isFollowing }) =>
     isFollowing ? theme.accent : theme.secondary};
+  transition: transform 250ms ${({ theme }) => theme.cubic};
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+  }
 
   &:disabled {
     background-color: rgba(128, 128, 128, 0.641);

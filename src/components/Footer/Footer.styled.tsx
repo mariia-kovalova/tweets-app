@@ -41,4 +41,10 @@ export const Heart = styled(AiFillHeart)`
 
 export const Link = styled.a`
   color: inherit;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover,
+  &:focus {
+    background-color: ${({ theme }) => theme.bgcHoverFocusLinks};
+  }
 `;

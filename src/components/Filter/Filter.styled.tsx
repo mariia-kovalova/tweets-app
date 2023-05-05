@@ -7,6 +7,7 @@ export const Wrap = styled.div`
 `;
 
 export const Select = styled.select`
+  cursor: pointer;
   display: block;
   width: 100%;
   height: 48px;
