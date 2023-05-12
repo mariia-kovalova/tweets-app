@@ -19,7 +19,7 @@ const TweetsPage: FC = () => {
 
   const showLoader = isLoading && items.length === 0;
   const showList = !error && items.length !== 0;
-  const showLoadMore = !error && items.length !== 0 && hasMore;
+  const showLoadMore = !error && !isLoading && items.length !== 0 && hasMore;
 
   return (
     <>

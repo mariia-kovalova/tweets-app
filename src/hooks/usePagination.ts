@@ -5,8 +5,8 @@ import { getTweets } from '../redux/tweets/operations';
 import { useAppDispatch, useAppSelector } from './useRedux';
 import { useTweets } from './useTweets';
 import { selectStatusFilter } from '../redux/filter/selectors';
-import { follow, followings, showAll } from '../shared/constants/filter';
 import { selectFollowingsIds } from '../redux/followings/selectors';
+import { follow, followings, showAll } from '../shared/constants/filter';
 
 interface PaginationResult {
   items: TweetsWithIsFollowing[];
@@ -48,6 +48,13 @@ export function usePagination(): PaginationResult {
   };
 
   const hasMore = currentTotalItems() > items.length;
+
+  useEffect(() => {
+    if (filter !== showAll && hasMore && items.length < LIMIT) {
+      setPage(page + 1);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items]);
 
   return { items, loadMore, hasMore, isLoading, error };
 }
