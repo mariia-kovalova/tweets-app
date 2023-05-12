@@ -21,9 +21,8 @@ export const slice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(getTweets.fulfilled, (state, { payload }) => {
-        state.items = payload;
+        state.items = [...state.items, ...payload];
       })
-
       .addCase(updateTweet.fulfilled, (state, { payload }) => {
         state.items = state.items.map(item =>
           item.id === payload.id ? payload : item

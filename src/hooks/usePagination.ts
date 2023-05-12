@@ -1,26 +1,53 @@
 import { useState, useEffect } from 'react';
+import { SerializedError } from '@reduxjs/toolkit';
+import { TweetsWithIsFollowing } from '../shared/types/TweetItem.interface';
+import { getTweets } from '../redux/tweets/operations';
+import { useAppDispatch, useAppSelector } from './useRedux';
+import { useTweets } from './useTweets';
+import { selectStatusFilter } from '../redux/filter/selectors';
+import { follow, followings, showAll } from '../shared/constants/filter';
+import { selectFollowingsIds } from '../redux/followings/selectors';
 
-interface PaginationResult<T> {
-  shownData: T[];
+interface PaginationResult {
+  items: TweetsWithIsFollowing[];
   loadMore: () => void;
   hasMore: boolean;
+  isLoading: boolean;
+  error: null | SerializedError;
 }
 
-const PER_PAGE = 3;
+const TOTAL_ITEMS = 12;
+const LIMIT = 3;
 
-export function usePagination<T>(items: T[]): PaginationResult<T> {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [shownData, setShownData] = useState<T[]>([]);
+export function usePagination(): PaginationResult {
+  const [page, setPage] = useState(1);
+  const filter = useAppSelector(selectStatusFilter);
+  const ids = useAppSelector(selectFollowingsIds);
+  const { items = [], isLoading, error } = useTweets();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    setShownData(items.slice(0, currentPage * PER_PAGE));
-  }, [items, currentPage]);
+    dispatch(getTweets({ page, limit: LIMIT }));
+  }, [dispatch, page]);
 
   const loadMore = () => {
-    setCurrentPage(currentPage + 1);
+    setPage(page + 1);
   };
 
-  const hasMore = currentPage * PER_PAGE < items.length;
+  const currentTotalItems = (): number => {
+    switch (filter) {
+      case showAll:
+        return TOTAL_ITEMS;
+      case follow:
+        return TOTAL_ITEMS - ids.length;
+      case followings:
+        return ids.length;
+      default:
+        return TOTAL_ITEMS;
+    }
+  };
 
-  return { shownData, loadMore, hasMore };
+  const hasMore = currentTotalItems() > items.length;
+
+  return { items, loadMore, hasMore, isLoading, error };
 }

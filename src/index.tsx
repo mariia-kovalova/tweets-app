@@ -14,18 +14,18 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <HelmetProvider>
-      <ThemeProvider theme={theme}>
-        <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
-            <BrowserRouter basename="/tweets-app">
-              <Global styles={GlobalStyles} />
-              <App />
-            </BrowserRouter>
-          </PersistGate>
-        </Provider>
-      </ThemeProvider>
-    </HelmetProvider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <HelmetProvider>
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <BrowserRouter basename="/tweets-app">
+            <Global styles={GlobalStyles} />
+            <App />
+          </BrowserRouter>
+        </PersistGate>
+      </Provider>
+    </ThemeProvider>
+  </HelmetProvider>
+  // </React.StrictMode>
 );
